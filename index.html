@@ -1,37 +1,174 @@
-import { Navbar } from "@/components/landing/Navbar";
-import { Hero } from "@/components/landing/Hero";
-import { SocialProof } from "@/components/landing/SocialProof";
-import { Features } from "@/components/landing/Features";
-import { ProductShowcase } from "@/components/landing/ProductShowcase";
-import { Benefits } from "@/components/landing/Benefits";
-import { Testimonials } from "@/components/landing/Testimonials";
-import { Pricing } from "@/components/landing/Pricing";
-import { FAQ } from "@/components/landing/FAQ";
-import { FinalCTA } from "@/components/landing/FinalCTA";
-import { Footer } from "@/components/landing/Footer";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Glow Skincare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #2B1B3D;
+            --pink: #FF4081;
+            --rose: #FF80AB;
+            --sun: #FFD54F;
+            --teal: #00B4D8;
+            --wash: #FFF0F5;
+            --white: #FFFFFF;
+            --muted: #6B5B7A;
+            --serif: 'Fraunces', Georgia, serif;
+            --sans: 'DM Sans', system-ui, sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); color: var(--ink); background: var(--white); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        :focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
 
-export default function HomePage() {
-  return (
-    <>
-      <a
-        href="#top"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#1f2420] focus:shadow-lg"
-      >
-        Skip to content
-      </a>
-      <Navbar />
-      <main>
-        <Hero />
-        <SocialProof />
-        <Features />
-        <ProductShowcase />
-        <Benefits />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-        <FinalCTA />
-      </main>
-      <Footer />
-    </>
-  );
-}
+        /* Header */
+        header { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #FFE4E1; }
+        header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: var(--serif); font-weight: 800; font-size: 1.35rem; }
+        .logo span { color: var(--pink); }
+        nav a { margin-left: 22px; font-weight: 500; }
+        nav a:hover { color: var(--pink); }
+
+        /* Hero */
+        .hero { background: var(--wash); overflow: hidden; position: relative; }
+        .hero .wrap { padding: 80px 22px 90px; position: relative; }
+        .hero h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(2.4rem, 6.5vw, 4.6rem); line-height: 1.05; max-width: 760px; }
+        .hero p { max-width: 520px; margin: 20px 0 28px; color: var(--muted); font-size: 1.1rem; }
+        .btn { display: inline-block; background: var(--pink); color: #fff; padding: 13px 26px; border-radius: 999px; font-weight: 700; border: 0; cursor: pointer; font-size: 1rem; font-family: inherit; transition: transform .15s; }
+        .btn:hover { transform: translateY(-2px); }
+        .btn.alt { background: var(--ink); margin-left: 10px; }
+
+        /* Blobs */
+        .blob { position: absolute; border-radius: 50%; z-index: 0; }
+        .b1 { width: 300px; height: 300px; background: var(--sun); right: -60px; top: -50px; opacity: 0.6; }
+        .b2 { width: 170px; height: 170px; background: var(--teal); right: 150px; bottom: -60px; opacity: 0.4; }
+        .hero .wrap > * { position: relative; z-index: 1; }
+
+        /* Sections */
+        section { padding: 64px 0; }
+        h2 { font-family: var(--serif); font-weight: 800; font-size: 2.2rem; margin-bottom: 8px; }
+        .sub { color: var(--muted); margin-bottom: 26px; }
+
+        /* Grid Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 26px; }
+        .card { background: #fff; border: 2px solid var(--ink); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; text-align: left; padding: 0; transition: transform .2s, box-shadow .2s; }
+        .card:hover { transform: translate(-4px, -4px); box-shadow: 6px 6px 0 var(--ink); }
+        .cover { height: 180px; background: linear-gradient(135deg, var(--rose), var(--sun)); display: flex; align-items: flex-end; padding: 14px; font-size: 2.5rem; }
+        .tag { background: #fff; color: var(--ink); font-weight: 700; font-size: 0.8rem; padding: 4px 12px; border-radius: 999px; }
+        .card .body { padding: 18px 20px 22px; }
+        .card h3 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: 8px; }
+        .card p { color: var(--muted); font-size: 0.95rem; }
+
+        /* About / Routine */
+        .routine-box { background: var(--wash); border: 2px solid var(--ink); border-radius: 24px; padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+        .routine-box ul { list-style: none; }
+        .routine-box li { margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+
+        /* Footer */
+        footer { background: var(--wash); padding: 34px 0; text-align: center; color: var(--muted); border-top: 2px solid var(--ink); }
+        footer a { color: var(--pink); font-weight: 700; margin: 0 8px; }
+
+        @media(max-width: 640px) {
+            .routine-box { grid-template-columns: 1fr; padding: 20px; }
+            nav a { margin-left: 14px; font-size: 0.92rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="wrap">
+            <a class="logo" href="#top">Aura<span>Glow</span></a>
+            <nav>
+                <a href="#products">Products</a>
+                <a href="#routine">Routine</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero" id="top">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="wrap">
+            <h1>Pure ingredients, natural radiance.</h1>
+            <p>Gentle, effective skincare routines crafted with nourishing botanicals for healthy, glowing skin every single day.</p>
+            <a class="btn" href="#products">Explore Products</a>
+        </div>
+    </div>
+
+    <section id="products">
+        <div class="wrap">
+            <h2>Best Sellers</h2>
+            <p class="sub">Loved by skin types of all kinds.</p>
+            <div class="grid">
+                <div class="card">
+                    <div class="cover">💧</div>
+                    <div class="body">
+                        <span class="tag" style="margin-bottom:8px; display:inline-block;">Serum</span>
+                        <h3>Glow Hydration Serum</h3>
+                        <p>Deeply replenishes moisture and restores natural skin radiance with lightweight botanicals.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cover">🌿</div>
+                    <div class="body">
+                        <span class="tag" style="margin-bottom:8px; display:inline-block;">Cleanser</span>
+                        <h3>Gentle Herb Cleanser</h3>
+                        <p>Cleanses away impurities and calms your skin without stripping away essential natural oils.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cover">🌙</div>
+                    <div class="body">
+                        <span class="tag" style="margin-bottom:8px; display:inline-block;">Night Cream</span>
+                        <h3>Botanical Night Cream</h3>
+                        <p>Nourishes, repairs, and rejuvenates your skin while you sleep so you wake up glowing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="routine">
+        <div class="wrap">
+            <h2>Your Daily Glow Routine</h2>
+            <p class="sub">Simple steps for lasting skin health.</p>
+            <div class="routine-box">
+                <div>
+                    <h3 style="font-family:var(--serif); font-size:1.6rem; margin-bottom:14px;">Morning & Evening Care</h3>
+                    <p style="color:var(--muted); margin-bottom:16px;">Consistency is the true secret to glowing skin. Follow these simple steps daily to keep your skin balanced and hydrated.</p>
+                    <a class="btn" href="#products">Shop Routine</a>
+                </div>
+                <div>
+                    <ul>
+                        <li>✨ <strong>Step 1:</strong> Cleanse gently with our Herb Cleanser</li>
+                        <li>💧 <strong>Step 2:</strong> Apply 3 drops of Hydration Serum</li>
+                        <li>🌸 <strong>Step 3:</strong> Lock in moisture with our Botanical Cream</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" style="background:#FAF3F5;">
+        <div class="wrap" style="text-align: center; max-width: 700px;">
+            <h2>Clean & Conscious Skincare</h2>
+            <p style="color:var(--muted); margin-top: 14px;">We believe skincare should be simple, safe, and cruelty-free. Every formula is carefully crafted using plant-powered ingredients that respect both your skin and the planet.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Aura Glow Skincare. All rights reserved.</p>
+        <p style="margin-top:10px">
+            <a href="#">Instagram</a> | <a href="#">Support</a> | <a href="#">Privacy</a>
+        </p>
+    </footer>
+
+</body>
+</html>
