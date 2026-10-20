@@ -3,172 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Glow Skincare</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>AuraGlow — Clean, Vegan & Barrier-First Botanical Skincare</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ink: #2B1B3D;
-            --pink: #FF4081;
-            --rose: #FF80AB;
-            --sun: #FFD54F;
-            --teal: #00B4D8;
-            --wash: #FFF0F5;
-            --white: #FFFFFF;
-            --muted: #6B5B7A;
-            --serif: 'Fraunces', Georgia, serif;
-            --sans: 'DM Sans', system-ui, sans-serif;
+            --bg-alabaster: #FAF8F5;
+            --text-charcoal: #1A241E;
+            --emerald-sage: #2D5A43;
+            --emerald-hover: #234735;
+            --accent-clay: #C87D55;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(45, 90, 67, 0.12);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--sans); color: var(--ink); background: var(--white); line-height: 1.6; }
-        a { color: inherit; text-decoration: none; }
-        :focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
-        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
 
-        /* Header */
-        header { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #FFE4E1; }
-        header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-        .logo { font-family: var(--serif); font-weight: 800; font-size: 1.35rem; }
-        .logo span { color: var(--pink); }
-        nav a { margin-left: 22px; font-weight: 500; }
-        nav a:hover { color: var(--pink); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Hero */
-        .hero { background: var(--wash); overflow: hidden; position: relative; }
-        .hero .wrap { padding: 80px 22px 90px; position: relative; }
-        .hero h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(2.4rem, 6.5vw, 4.6rem); line-height: 1.05; max-width: 760px; }
-        .hero p { max-width: 520px; margin: 20px 0 28px; color: var(--muted); font-size: 1.1rem; }
-        .btn { display: inline-block; background: var(--pink); color: #fff; padding: 13px 26px; border-radius: 999px; font-weight: 700; border: 0; cursor: pointer; font-size: 1rem; font-family: inherit; transition: transform .15s; }
-        .btn:hover { transform: translateY(-2px); }
-        .btn.alt { background: var(--ink); margin-left: 10px; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-alabaster);
+            color: var(--text-charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* Blobs */
-        .blob { position: absolute; border-radius: 50%; z-index: 0; }
-        .b1 { width: 300px; height: 300px; background: var(--sun); right: -60px; top: -50px; opacity: 0.6; }
-        .b2 { width: 170px; height: 170px; background: var(--teal); right: 150px; bottom: -60px; opacity: 0.4; }
-        .hero .wrap > * { position: relative; z-index: 1; }
+        h1, h2, h3, .serif-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
 
-        /* Sections */
-        section { padding: 64px 0; }
-        h2 { font-family: var(--serif); font-weight: 800; font-size: 2.2rem; margin-bottom: 8px; }
-        .sub { color: var(--muted); margin-bottom: 26px; }
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
 
-        /* Grid Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 26px; }
-        .card { background: #fff; border: 2px solid var(--ink); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; text-align: left; padding: 0; transition: transform .2s, box-shadow .2s; }
-        .card:hover { transform: translate(-4px, -4px); box-shadow: 6px 6px 0 var(--ink); }
-        .cover { height: 180px; background: linear-gradient(135deg, var(--rose), var(--sun)); display: flex; align-items: flex-end; padding: 14px; font-size: 2.5rem; }
-        .tag { background: #fff; color: var(--ink); font-weight: 700; font-size: 0.8rem; padding: 4px 12px; border-radius: 999px; }
-        .card .body { padding: 18px 20px 22px; }
-        .card h3 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: 8px; }
-        .card p { color: var(--muted); font-size: 0.95rem; }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--emerald-sage);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
 
-        /* About / Routine */
-        .routine-box { background: var(--wash); border: 2px solid var(--ink); border-radius: 24px; padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
-        .routine-box ul { list-style: none; }
-        .routine-box li { margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+        .logo span {
+            display: block;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-clay);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            background-color: var(--emerald-sage);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--emerald-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--emerald-sage);
+            color: var(--emerald-sage);
+        }
+
+        .btn-outline:hover {
+            background: var(--emerald-sage);
+            color: white;
+        }
+
+        /* Community Stats Ticker */
+        .community-banner {
+            background: #EBF3EE;
+            color: var(--emerald-sage);
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 4.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        /* Hero Section */
+        header.hero {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(45, 90, 67, 0.08);
+            color: var(--emerald-sage);
+            padding: 0.35rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-charcoal);
+        }
+
+        .hero h1 span {
+            color: var(--emerald-sage);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #4A5568;
+            margin-bottom: 2rem;
+        }
+
+        .lead-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        }
+
+        .lead-box input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #CBD5E1;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .lead-box input:focus {
+            border-color: var(--emerald-sage);
+        }
+
+        .lead-box .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .hero-image-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        /* Recent Activity Ticker Card */
+        .activity-card {
+            background: white;
+            border-left: 4px solid var(--accent-clay);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .activity-card strong {
+            color: var(--emerald-sage);
+        }
 
         /* Footer */
-        footer { background: var(--wash); padding: 34px 0; text-align: center; color: var(--muted); border-top: 2px solid var(--ink); }
-        footer a { color: var(--pink); font-weight: 700; margin: 0 8px; }
+        footer {
+            background: #111A15;
+            color: white;
+            padding: 4rem 5% 2rem;
+            text-align: center;
+        }
 
-        @media(max-width: 640px) {
-            .routine-box { grid-template-columns: 1fr; padding: 20px; }
-            nav a { margin-left: 14px; font-size: 0.92rem; }
+        footer p {
+            color: #9CA3AF;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            header.hero {
+                grid-template-columns: 1fr;
+                padding-top: 3rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="wrap">
-            <a class="logo" href="#top">Aura<span>Glow</span></a>
-            <nav>
-                <a href="#products">Products</a>
-                <a href="#routine">Routine</a>
-                <a href="#about">About</a>
-            </nav>
+    <!-- Navbar -->
+    <nav>
+        <a href="#" class="logo">
+            AuraGlow
+            <span>Clean Botanical Lab</span>
+        </a>
+        <div class="nav-actions">
+            <a href="#offer" class="btn btn-outline">VIP Access</a>
+            <a href="#offer" class="btn">Claim 20% Off</a>
+        </div>
+    </nav>
+
+    <!-- Community Counter Banner (From Backend Data) -->
+    <div class="community-banner">
+        ✨ Join <span id="counter">14,821</span> conscious skincare seekers already on the AuraGlow VIP waitlist!
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div>
+            <div class="hero-badge">100% Vegan · pH 5.2 Microbiome Balanced</div>
+            <h1>Tired of harsh chemicals stripping your skin? <span>Switch to pure barrier glow.</span></h1>
+            <p>Meet AuraGlow — plant-fermented skincare crafted for conscious skin seekers. Heal post-chemical redness, congestion, and dullness with breathable, sustainable botanicals.</p>
+            
+            <div class="lead-box" id="offer">
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.4rem;">Unlock 20% VIP Clean Pass</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #64748B;">Enter your details to get your instant voucher & personalized clean ritual.</p>
+                <form id="leadForm" onsubmit="handleLeadSubmit(event)">
+                    <input type="text" id="fullName" placeholder="Your Full Name" required>
+                    <input type="email" id="email" placeholder="Your Email Address *" required>
+                    <button type="submit" class="btn" id="submitBtn">Unlock My VIP Pass Now →</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="hero-image-card">
+            <h3 class="serif-font" style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--emerald-sage);">The 3-Step Barrier Reset Set</h3>
+            <p style="font-size: 0.95rem; color: #64748B; margin-bottom: 1.5rem;">Replaces harsh chemical routines with bio-fermented vegan botanical essentials.</p>
+            <div style="background: #F1F5F9; height: 260px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #94A3B8; font-weight: 500; margin-bottom: 1rem;">
+                [AuraGlow Glass Products Showcase]
+            </div>
+
+            <!-- Recent Activity Ticker (Simulating backend dynamic data) -->
+            <div class="activity-card">
+                <p id="activityText">🌿 <strong>Ishita M.</strong> just unlocked the <em>Pure Calm Microbiome & Barrier Reset Ritual</em> (Sensitive Skin).</p>
+            </div>
         </div>
     </header>
 
-    <div class="hero" id="top">
-        <div class="blob b1"></div>
-        <div class="blob b2"></div>
-        <div class="wrap">
-            <h1>Pure ingredients, natural radiance.</h1>
-            <p>Gentle, effective skincare routines crafted with nourishing botanicals for healthy, glowing skin every single day.</p>
-            <a class="btn" href="#products">Explore Products</a>
-        </div>
-    </div>
-
-    <section id="products">
-        <div class="wrap">
-            <h2>Best Sellers</h2>
-            <p class="sub">Loved by skin types of all kinds.</p>
-            <div class="grid">
-                <div class="card">
-                    <div class="cover">💧</div>
-                    <div class="body">
-                        <span class="tag" style="margin-bottom:8px; display:inline-block;">Serum</span>
-                        <h3>Glow Hydration Serum</h3>
-                        <p>Deeply replenishes moisture and restores natural skin radiance with lightweight botanicals.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="cover">🌿</div>
-                    <div class="body">
-                        <span class="tag" style="margin-bottom:8px; display:inline-block;">Cleanser</span>
-                        <h3>Gentle Herb Cleanser</h3>
-                        <p>Cleanses away impurities and calms your skin without stripping away essential natural oils.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="cover">🌙</div>
-                    <div class="body">
-                        <span class="tag" style="margin-bottom:8px; display:inline-block;">Night Cream</span>
-                        <h3>Botanical Night Cream</h3>
-                        <p>Nourishes, repairs, and rejuvenates your skin while you sleep so you wake up glowing.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="routine">
-        <div class="wrap">
-            <h2>Your Daily Glow Routine</h2>
-            <p class="sub">Simple steps for lasting skin health.</p>
-            <div class="routine-box">
-                <div>
-                    <h3 style="font-family:var(--serif); font-size:1.6rem; margin-bottom:14px;">Morning & Evening Care</h3>
-                    <p style="color:var(--muted); margin-bottom:16px;">Consistency is the true secret to glowing skin. Follow these simple steps daily to keep your skin balanced and hydrated.</p>
-                    <a class="btn" href="#products">Shop Routine</a>
-                </div>
-                <div>
-                    <ul>
-                        <li>✨ <strong>Step 1:</strong> Cleanse gently with our Herb Cleanser</li>
-                        <li>💧 <strong>Step 2:</strong> Apply 3 drops of Hydration Serum</li>
-                        <li>🌸 <strong>Step 3:</strong> Lock in moisture with our Botanical Cream</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" style="background:#FAF3F5;">
-        <div class="wrap" style="text-align: center; max-width: 700px;">
-            <h2>Clean & Conscious Skincare</h2>
-            <p style="color:var(--muted); margin-top: 14px;">We believe skincare should be simple, safe, and cruelty-free. Every formula is carefully crafted using plant-powered ingredients that respect both your skin and the planet.</p>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <p>© 2026 Aura Glow Skincare. All rights reserved.</p>
-        <p style="margin-top:10px">
-            <a href="#">Instagram</a> | <a href="#">Support</a> | <a href="#">Privacy</a>
-        </p>
+        <a href="#" class="logo" style="color: white; display: inline-block; margin-bottom: 1rem;">
+            AuraGlow
+            <span style="color: var(--accent-clay);">Clean Botanical Lab</span>
+        </a>
+        <p>© 2026 AuraGlow Botanical Labs Pvt. Ltd. All rights reserved. Crafted with clean botanicals.</p>
     </footer>
 
+    <!-- Interactive Script -->
+    <script>
+        function handleLeadSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('fullName').value || 'Friend';
+            const btn = document.getElementById('submitBtn');
+            
+            btn.textContent = 'Success! Code: AURAGLOW20 Unlocked 🎉';
+            btn.style.backgroundColor = '#C87D55';
+            
+            alert(`Thank you, ${name}! Your VIP 20% discount code (AURAGLOW20) has been unlocked and sent to your email.`);
+        }
+    </script>
 </body>
 </html>
